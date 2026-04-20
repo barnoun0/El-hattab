@@ -2,6 +2,68 @@
 
 An autonomous maze-solving robot built with Arduino, utilizing three ultrasonic sensors for spatial awareness and an MPU6050 IMU for precise directional control. The robot employs a wall-following algorithm combined with a dual-PID system to maintain stability and accuracy that used to compete in insat robolympix 4.0 in the autonomous challenge.
 
+## Code explanation
+'#include <Wire.h>
+#include <MPU6050_tockn.h>'
+
+Libraries needed for the MPU6050 to work
+
+'MPU6050 mpu6050(Wire);'
+
+Initialazing the mpu605à
+
+'int in1 = 6;   // Left motor PWM forward
+int in2 = 3;   // Left motor PWM backward
+int in3 = 5;   // Right motor PWM forward
+int in4 = 9;   // Right motor PWM backward
+
+long t;
+int led =11;
+int distw = 24;
+
+int echo1 = 13; int trig1 = 12;  // Front sensor
+int echo2 = 10;  int trig2 = 4;   // Left sensor
+int echo3 = 8; int trig3 = 7;  // Right sensor
+
+float Kp = 15;
+float Ki = 0.05;
+float Kd = 0.1;  
+
+float tangle = 0.0; 
+
+float integral  = 0;
+float derivative = 0;
+float preverror  = 0;
+
+int basespeed = 180;
+int maxspeed  = 255;
+int minspeed  = 100;
+
+float lastfront;
+float lastleft;
+float lastright;
+
+int sensorMax = 3*40;
+int sensorMin = 2;
+const int READINGS = 4;
+
+float p_turn = 40.0; 
+float d_turn = 3;
+float last_turn_error = 0;
+
+// Speed Settings
+int turn_base_speed = 30; 
+int max_pwm = 70;
+
+// ─── Maze Solver Settings ─────────────────────────────────
+#define WALL_THRESHOLD  18    // cm — treat anything closer as a wall
+#define TURN_SPEED      170   // motor speed during gyro turns
+#define FORWARD_CHECK   12    // cm — front wall triggers a turn decision
+#define CELL_DRIVE_MS   300   // ms to drive into new cell after a turn (tune this)'
+
+Global variables
+
+
 ## 🛠 Navigation Logic: The Algorithm
 
 The robot implements the **Right-Hand Rulex (Wall Follower). This is an "uninformed" maze-solving algorithm where the robot treats the maze walls as a single continuous surface, keeping the right wall at a constant relative distance.
