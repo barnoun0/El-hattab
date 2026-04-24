@@ -3,17 +3,25 @@
 An autonomous maze-solving robot built with Arduino, utilizing three ultrasonic sensors for spatial awareness and an MPU6050 IMU for precise directional control. The robot employs a wall-following algorithm combined with a dual-PID system to maintain stability and accuracy that used to compete in insat robolympix 4.0 in the autonomous challenge.
 
 ## Code explanation
-'''#include <Wire.h>
-#include <MPU6050_tockn.h>```
+```
+ 
+#include <Wire.h>
+#include <MPU6050_tockn.h>
+```
+
 
 
 Libraries needed for the MPU6050 to work
 
-''''MPU6050 mpu6050(Wire);'''
+```
+ MPU6050 mpu6050(Wire);
+```
+
 
 Initialazing the mpu605à
 
-'''int in1 = 6;   // Left motor PWM forward
+```
+int in1 = 6;   // Left motor PWM forward
 int in2 = 3;   // Left motor PWM backward
 int in3 = 5;   // Right motor PWM forward
 int in4 = 9;   // Right motor PWM backward
@@ -60,7 +68,9 @@ int max_pwm = 70;
 #define WALL_THRESHOLD  18    // cm — treat anything closer as a wall
 #define TURN_SPEED      170   // motor speed during gyro turns
 #define FORWARD_CHECK   12    // cm — front wall triggers a turn decision
-#define CELL_DRIVE_MS   300   // ms to drive into new cell after a turn (tune this)'''
+#define CELL_DRIVE_MS   300   // ms to drive into new cell after a turn (tune this)
+```
+
 
 Global variables
 
